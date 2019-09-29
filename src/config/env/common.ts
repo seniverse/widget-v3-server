@@ -1,12 +1,7 @@
 export default {
   port: process.env.PORT || '3001',
   serverName: 'widget-v3-server',
-  auth: {
-    'hansel-web-bff': {
-      key: 'test-key',
-      secret: 'test-secret',
-    }
-  },
+  auth: {},
   store: {
     redis: {
       url: 'redis://localhost:6379/3'
