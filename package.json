@@ -8,7 +8,8 @@
     "build": "echo Using TypeScript && tsc --version && tsc -p ./tsconfig.pro.json --pretty",
     "start-dev": "cross-env DEBUG=horizon* cross-env nodemon",
     "test": "mocha -r ts-node/register ./test/**/*.test.ts --exit",
-    "init": "npm run build && node dist/scripts/init.js"
+    "init": "npm run build && node dist/scripts/init.js",
+    "weather-permission": "npm run build && node dist/scripts/weather.js"
   },
   "author": "",
   "license": "ISC",
