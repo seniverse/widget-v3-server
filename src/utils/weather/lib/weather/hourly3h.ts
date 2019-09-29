@@ -2,11 +2,11 @@
 import { TEMPLATE_DATA } from '../../../constant/data'
 import { getUITemplateConfig } from '../../utils'
 
-export const RIGHT_NAME = 'v3_weather_hourly3h'
+export const DATA_SOURCE = 'v3/weather/hourly3h'
 export const API_NAME = '逐3小时预报'
 
 export const getConfig = getUITemplateConfig(
-  '(v3/weather/hourly3h).results[0].data'
+  `(${DATA_SOURCE}).results[0].data`
 )
 
 export const API_CONFIGS = [
@@ -20,7 +20,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,2': [
             {
-              dataSource: '(v3/weather/hourly3h).results[0].data',
+              dataSource: `(${DATA_SOURCE}).results[0].data`,
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.PIPLELINE,

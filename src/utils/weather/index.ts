@@ -21,7 +21,7 @@ interface ApiConfig {
 export const APIS: Map<symbol, {
   API_CONFIGS: ApiConfig[] | ApiConfig
   API_NAME: string
-  RIGHT_NAME: string
+  DATA_SOURCE: string
   WIDGET_PREFIX: string
   getConfig: (field: any) => (language: string, unit: string) => any
 }> = shadowImport(
@@ -33,10 +33,10 @@ export const APIS: Map<symbol, {
     requiredExports: [
       'API_CONFIGS',
       'API_NAME',
-      'RIGHT_NAME',
+      'DATA_SOURCE',
       'getConfig'
     ],
-    nameFormatter: (_, module) => module.RIGHT_NAME,
+    nameFormatter: (_, module) => module.DATA_SOURCE.split('/').join('_'),
     extend: (pathes: string[], module: any) => ({
       ...module,
       WIDGET_PREFIX: pathes.join('.'),
@@ -80,7 +80,11 @@ export const buildWidgetComponents = (rights: {
   if (right.yesterday) rightKeys.push('yesterday')
 
   const API_CONFIGS = Array.isArray(rawConfig.API_CONFIGS) ? rawConfig.API_CONFIGS : [rawConfig.API_CONFIGS]
-  const { getConfig, WIDGET_PREFIX, API_NAME } = rawConfig
+  const {
+    API_NAME,
+    getConfig,
+    WIDGET_PREFIX
+  } = rawConfig
 
   for (const API_CONFIG of API_CONFIGS) {
     const { UIType, fields } = API_CONFIG

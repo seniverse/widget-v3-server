@@ -2,11 +2,11 @@
 import { TEMPLATE_DATA } from '../../../constant/data'
 import { getUITemplateConfig } from '../../utils'
 
-export const RIGHT_NAME = 'v3_air_daily'
+export const DATA_SOURCE = 'v3/air/daily'
 export const API_NAME = '逐日预报'
 
 export const getConfig = getUITemplateConfig(
-  '(v3/air/daily).results[0].daily'
+  `(${DATA_SOURCE}).results[0].daily`
 )
 
 export const API_CONFIGS = [
@@ -20,7 +20,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,1': [
             {
-              dataSource: '(v3/air/daily).results[0].daily',
+              dataSource: `(${DATA_SOURCE}).results[0].daily`,
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE_MAP,
@@ -50,7 +50,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,2': [
             {
-              dataSource: '(v3/air/daily).results[0].daily',
+              dataSource: `(${DATA_SOURCE}).results[0].daily`,
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE_MAP,

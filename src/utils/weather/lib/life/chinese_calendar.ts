@@ -2,12 +2,10 @@
 import { TEMPLATE_DATA } from '../../../constant/data'
 import { getUITemplateConfig } from '../../utils'
 
-export const RIGHT_NAME = 'v3_life_chinese_calendar'
+export const DATA_SOURCE = 'v3/life/chinese_calendar'
 export const API_NAME = '农历'
 
-export const getConfig = getUITemplateConfig(
-  '(v3/life/chinese_calendar).results.chinese_calendar[0]'
-)
+export const getConfig = getUITemplateConfig('')
 
 export const API_CONFIGS = {
   UIType: TEMPLATE_DATA.UITYPE.TILE,
@@ -19,7 +17,7 @@ export const API_CONFIGS = {
       getConfig: (language: string, unit: string) => ({
         '2,1': [
           {
-            dataSource: '(v3/life/chinese_calendar).results.chinese_calendar[0]',
+            dataSource: `(${DATA_SOURCE}).results.chinese_calendar[0]`,
             params: {
               days: 1
             },

@@ -3,11 +3,11 @@ import { TEMPLATE_DATA } from '../../../constant/data'
 import { formatLocal, formatUnit } from '../../../constant/language'
 import { getUITemplateConfig } from '../../utils'
 
-export const RIGHT_NAME = 'v3_weather_now'
+export const DATA_SOURCE = 'v3/weather/now'
 export const API_NAME = '天气实况'
 
 export const getConfig = getUITemplateConfig(
-  '(v3/weather/now).results[0].now'
+  `(${DATA_SOURCE}).results[0].now`
 )
 
 export const API_CONFIGS = {
@@ -32,10 +32,12 @@ export const API_CONFIGS = {
       rightKeys: ['basic', 'advanced'],
       getContent: (language: string) => ({
         header: formatLocal(language, 'temperature'),
-        content: [{
-          text: '#:temperature#°',
-          suffix: ''
-        }]
+        content: [
+          {
+            text: '#:temperature#°',
+            suffix: ''
+          }
+        ]
       })
     },
     feels_like: {
@@ -43,10 +45,12 @@ export const API_CONFIGS = {
       rightKeys: ['advanced'],
       getContent: (language: string) => ({
         header: formatLocal(language, 'feels_like'),
-        content: [{
-          text: '#:feels_like#°',
-          suffix: ''
-        }]
+        content: [
+          {
+            text: '#:feels_like#°',
+            suffix: ''
+          }
+        ]
       })
     },
     pressure: {
@@ -68,7 +72,7 @@ export const API_CONFIGS = {
       getConfig: (language: string, unit: string) => ({
         '1,1': [
           {
-            dataSource: '(v3/weather/now).results[0].now',
+            dataSource: `(${DATA_SOURCE}).results[0].now`,
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
@@ -86,7 +90,7 @@ export const API_CONFIGS = {
         ],
         '2,1': [
           {
-            dataSource: '(v3/weather/now).results[0].now',
+            dataSource: `(${DATA_SOURCE}).results[0].now`,
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
@@ -121,10 +125,12 @@ export const API_CONFIGS = {
       rightKeys: ['advanced'],
       getContent: (language: string) => ({
         header: formatLocal(language, 'dew_point'),
-        content: [{
-          text: '#:dew_point#°',
-          suffix: ''
-        }]
+        content: [
+          {
+            text: '#:dew_point#°',
+            suffix: ''
+          }
+        ]
       })
     }
   }

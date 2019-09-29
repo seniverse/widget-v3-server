@@ -22,7 +22,7 @@ export const getUITemplateConfig = (dataSource: string) => (uiKey: string) => (f
     config: field.getConfig ? field.getConfig(language, unit, field.key) : {
       [availableSizes[0]]: [
         {
-          dataSource: dataSource,
+          dataSource,
           params: {},
           template: {
             type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,

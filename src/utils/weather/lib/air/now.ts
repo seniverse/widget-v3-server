@@ -3,11 +3,11 @@ import { TEMPLATE_DATA } from '../../../constant/data'
 import { formatLocal } from '../../../constant/language'
 import { getUITemplateConfig } from '../../utils'
 
-export const RIGHT_NAME = 'v3_air_now'
+export const DATA_SOURCE = 'v3/air/now'
 export const API_NAME = '空气实况'
 
 export const getConfig = getUITemplateConfig(
-  '(v3/air/now).results[0].air.city'
+  `(${DATA_SOURCE}).results[0].air.city`
 )
 
 export const API_CONFIGS = {
@@ -20,7 +20,7 @@ export const API_CONFIGS = {
       getConfig: (language: string, unit: string) => ({
         '1,1': [
           {
-            dataSource: '(v3/air/now).results[0].air.city',
+            dataSource: `(${DATA_SOURCE}).results[0].air.city`,
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
@@ -38,7 +38,7 @@ export const API_CONFIGS = {
         ],
         '2,1': [
           {
-            dataSource: '(v3/air/now).results[0].air.city',
+            dataSource: `(${DATA_SOURCE}).results[0].air.city`,
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
