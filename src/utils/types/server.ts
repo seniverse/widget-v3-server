@@ -56,9 +56,6 @@ interface Store {
     url: string
     dbName: string
   }
-  readonly redis: {
-    url: string
-  }
 }
 
 interface Logger {

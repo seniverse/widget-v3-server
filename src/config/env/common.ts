@@ -3,9 +3,6 @@ export default {
   serverName: 'widget-v3-server',
   auth: {},
   store: {
-    redis: {
-      url: 'redis://localhost:6379/3'
-    },
     mongo: {
       dbName: 'widget',
       url: 'mongodb://localhost/widget'

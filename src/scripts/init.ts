@@ -5,7 +5,7 @@ import { getMongo } from '../utils/mongo'
 import config from '../config'
 import { widgetData } from './weather'
 
-const UID = '123-456-789'
+const UID = uuid.v4()
 const KEY = process.env.SENIVERSE_API_KEY
 
 const inject = async () => {
@@ -17,7 +17,7 @@ const inject = async () => {
         key: KEY,
         allowedDomains: [
           'http://localhost:3001',
-          'http://localhost:3000',
+          'http://localhost:3000'
         ],
         baseConfig: DEFAULT_WIDGET_BASE_CONFIG,
         UIConfigs: [
