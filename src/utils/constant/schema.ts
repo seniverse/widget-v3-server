@@ -27,7 +27,7 @@ export const WidgetConfigSchema = Joi.object({
     }, {})
   ),
   UIConfigs: Joi.array().items(
-    Joi.string().required()
+    Joi.string()
   ).min(0).required()
 })
 
