@@ -1,13 +1,13 @@
 
 import { TEMPLATE_DATA } from '../../../constant/data'
-import { formatLocal, formatUnit } from '../../../constant/language'
+import { formatLocal } from '../../../constant/language'
 import { getUITemplateConfig } from '../../utils'
 
 export const RIGHT_NAME = 'v3_life_suggestion'
 export const API_NAME = '生活指数'
 
 export const getConfig = getUITemplateConfig(
-  '(life/suggestion).results[0].suggestion'
+  '(v3/life/suggestion).results[0].suggestion'
 )
 
 const getContent = (language: string, unit: string, field: string) => ({
@@ -31,7 +31,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,1': [
             {
-              dataSource: '(life/suggestion).results[0].suggestion',
+              dataSource: '(v3/life/suggestion).results[0].suggestion',
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.PIPLELINE,

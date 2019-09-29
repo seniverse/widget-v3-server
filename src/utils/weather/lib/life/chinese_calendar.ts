@@ -6,7 +6,7 @@ export const RIGHT_NAME = 'v3_life_chinese_calendar'
 export const API_NAME = '农历'
 
 export const getConfig = getUITemplateConfig(
-  '(life/chinese_calendar).results.chinese_calendar[0]'
+  '(v3/life/chinese_calendar).results.chinese_calendar[0]'
 )
 
 export const API_CONFIGS = {
@@ -19,7 +19,7 @@ export const API_CONFIGS = {
       getConfig: (language: string, unit: string) => ({
         '2,1': [
           {
-            dataSource: '(life/chinese_calendar).results.chinese_calendar[0]',
+            dataSource: '(v3/life/chinese_calendar).results.chinese_calendar[0]',
             params: {
               days: 1
             },

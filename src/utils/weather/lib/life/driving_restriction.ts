@@ -6,7 +6,7 @@ export const RIGHT_NAME = 'v3_life_driving_restriction'
 export const API_NAME = '尾号限行'
 
 export const getConfig = getUITemplateConfig(
-  '(life/driving_restriction).results[0].restriction'
+  '(v3/life/driving_restriction).results[0].restriction'
 )
 
 export const API_CONFIGS = [
@@ -19,7 +19,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '1,1': [
             {
-              dataSource: '(life/driving_restriction).results[0].restriction',
+              dataSource: '(v3/life/driving_restriction).results[0].restriction',
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.PIPLELINE,
@@ -46,7 +46,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,1': [
             {
-              dataSource: '(life/driving_restriction).results[0].restriction',
+              dataSource: '(v3/life/driving_restriction).results[0].restriction',
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.PIPLELINE,

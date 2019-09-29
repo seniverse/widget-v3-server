@@ -1,13 +1,13 @@
 
 import { TEMPLATE_DATA } from '../../../constant/data'
-import { formatLocal, formatUnit } from '../../../constant/language'
+import { formatLocal } from '../../../constant/language'
 import { getUITemplateConfig } from '../../utils'
 
 export const RIGHT_NAME = 'v3_geo_sun'
 export const API_NAME = '日出日落'
 
 export const getConfig = getUITemplateConfig(
-  '(geo/sun).results[0].sun'
+  '(v3/geo/sun).results[0].sun'
 )
 
 export const API_CONFIGS = [
@@ -21,7 +21,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '2,1': [
             {
-              dataSource: '(geo/sun).results[0].sun[0]',
+              dataSource: '(v3/geo/sun).results[0].sun[0]',
               params: {
                 days: 1
               },
@@ -61,7 +61,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,1': [
             {
-              dataSource: '(geo/sun).results[0].sun',
+              dataSource: '(v3/geo/sun).results[0].sun',
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE_MAP,

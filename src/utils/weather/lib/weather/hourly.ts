@@ -6,7 +6,7 @@ export const RIGHT_NAME = 'v3_weather_hourly'
 export const API_NAME = '逐小时预报'
 
 export const getConfig = getUITemplateConfig(
-  '(weather/hourly).results[0].hourly'
+  '(v3/weather/hourly).results[0].hourly'
 )
 
 export const API_CONFIGS = [
@@ -20,7 +20,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,2': [
             {
-              dataSource: '(weather/hourly).results[0].hourly',
+              dataSource: '(v3/weather/hourly).results[0].hourly',
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.PIPLELINE,

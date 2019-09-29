@@ -47,7 +47,7 @@ export const WIDGET_DATAS: {
       config: {
         '3,2': [
           {
-            dataSource: '(weather/now).results[0]',
+            dataSource: '(v3/weather/now).results[0]',
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
@@ -63,7 +63,7 @@ export const WIDGET_DATAS: {
             }
           },
           {
-            dataSource: '(geo/sun).results[0].sun[0]',
+            dataSource: '(v3/geo/sun).results[0].sun[0]',
             params: {
               days: 1
             },
@@ -78,7 +78,7 @@ export const WIDGET_DATAS: {
             }
           },
           {
-            dataSource: '(weather/daily).results[0]',
+            dataSource: '(v3/weather/daily).results[0]',
             params: {
               days: 2,
               start: -1
@@ -102,7 +102,7 @@ export const WIDGET_DATAS: {
             }
           },
           {
-            dataSource: '(life/suggestion).results[0].suggestion',
+            dataSource: '(v3/life/suggestion).results[0].suggestion',
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
@@ -112,7 +112,7 @@ export const WIDGET_DATAS: {
             }
           },
           {
-            dataSource: '(weather/alarm).results[0].alarms',
+            dataSource: '(v3/weather/alarm).results[0].alarms',
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.PIPLELINE,

@@ -7,7 +7,7 @@ export const RIGHT_NAME = 'v3_weather_now'
 export const API_NAME = '天气实况'
 
 export const getConfig = getUITemplateConfig(
-  '(weather/now).results[0].now'
+  '(v3/weather/now).results[0].now'
 )
 
 export const API_CONFIGS = {
@@ -68,7 +68,7 @@ export const API_CONFIGS = {
       getConfig: (language: string, unit: string) => ({
         '1,1': [
           {
-            dataSource: '(weather/now).results[0].now',
+            dataSource: '(v3/weather/now).results[0].now',
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
@@ -86,7 +86,7 @@ export const API_CONFIGS = {
         ],
         '2,1': [
           {
-            dataSource: '(weather/now).results[0].now',
+            dataSource: '(v3/weather/now).results[0].now',
             params: {},
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,

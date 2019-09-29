@@ -1,13 +1,13 @@
 
 import { TEMPLATE_DATA } from '../../../constant/data'
-import { formatLocal, formatUnit } from '../../../constant/language'
+import { formatLocal } from '../../../constant/language'
 import { getUITemplateConfig } from '../../utils'
 
 export const RIGHT_NAME = 'v3_weather_daily'
 export const API_NAME = '逐日预报'
 
 export const getConfig = getUITemplateConfig(
-  '(weather/daily).results[0].daily'
+  '(v3/weather/daily).results[0].daily'
 )
 
 export const API_CONFIGS = [
@@ -21,7 +21,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '1,1': [
             {
-              dataSource: '(weather/daily).results[0].daily[0]',
+              dataSource: '(v3/weather/daily).results[0].daily[0]',
               params: {
                 days: 1
               },
@@ -58,7 +58,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '1,1': [
             {
-              dataSource: '(weather/daily).results[0].daily[0]',
+              dataSource: '(v3/weather/daily).results[0].daily[0]',
               params: {
                 days: 1
               },
@@ -85,7 +85,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '1,1': [
             {
-              dataSource: '(weather/daily).results[0].daily[0]',
+              dataSource: '(v3/weather/daily).results[0].daily[0]',
               params: {
                 start: -1,
                 days: 1
@@ -118,7 +118,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,1': [
             {
-              dataSource: '(weather/daily).results[0].daily',
+              dataSource: '(v3/weather/daily).results[0].daily',
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE_MAP,
@@ -149,7 +149,7 @@ export const API_CONFIGS = [
         getConfig: (language: string, unit: string) => ({
           '3,2': [
             {
-              dataSource: '(weather/daily).results[0].daily',
+              dataSource: '(v3/weather/daily).results[0].daily',
               params: {},
               template: {
                 type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE_MAP,

@@ -11,7 +11,7 @@ export default {
   services: {
     graphite: null,
     seniverse: {
-      url: 'https://api.seniverse.com/v3',
+      url: 'https://api.seniverse.com',
       params: {
         key: ''
       }
