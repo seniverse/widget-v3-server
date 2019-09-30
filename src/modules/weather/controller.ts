@@ -5,6 +5,7 @@ import TpError from '../../utils/error'
 import TpStatsd from '../../utils/statsd'
 import { weatherFormatter } from '../shared/weather'
 import logger from '../../utils/logger'
+import { LANGUAGE_MAP } from '../../utils/constant/language'
 
 const statsdRequest = (widgetConfig: WidgetConfig) => {
   TpStatsd.increment(`weather.${widgetConfig.id}.${widgetConfig.uid}.total`)
@@ -20,6 +21,17 @@ const getAutoLocation = (ip: string, location: string) => {
   return location
 }
 
+const getAutoLanguage = (language: string): string =>
+  LANGUAGE_MAP[language.toLowerCase()] || language
+
+const checkDomainAllowed = (domain: string, allowedDomains: string[]): boolean => {
+  if (!allowedDomains.length) return true
+  for (const allowedDomain of allowedDomains) {
+    if (new RegExp(allowedDomain).test(domain)) return true
+  }
+  return false
+}
+
 export const queryWidgetWeather: Controller = async (ctx) => {
   const { id } = ctx.params
   const widgetConfig: WidgetConfig = await ctx.db.collection('widget').findOne({ id })
@@ -29,10 +41,10 @@ export const queryWidgetWeather: Controller = async (ctx) => {
   }
 
   // check domain
-  const { origin: domain } = ctx.request
+  const { origin: domain } = ctx.request.header
   const { key, baseConfig, UIConfigs, allowedDomains } = widgetConfig
   logger.debug(`[domain] ${domain}, ${allowedDomains}`)
-  if (allowedDomains.length && !new Set(allowedDomains).has(domain)) {
+  if (!checkDomainAllowed(domain, allowedDomains)) {
     throw new TpError.AuthError(`domain ${domain} is not allowed!`)
   }
 
@@ -48,7 +60,11 @@ export const queryWidgetWeather: Controller = async (ctx) => {
   const requestLocation = location || baseConfig.location
 
   const detected = ctx.request.query._detected || ctx.request.query.detected
-  const lan = autoLanguage ? detected : (language || baseConfig.language)
+  const lan = getAutoLanguage(
+    autoLanguage
+      ? (detected || language || baseConfig.language)
+      : (language || baseConfig.language)
+  )
   const loc = autoLocation
     ? getAutoLocation(ctx.request.ip, requestLocation)
     : requestLocation

@@ -16,6 +16,13 @@ const LOCALES = {
   'zh-hant': zh_cht,
 }
 
+export const LANGUAGE_MAP = {
+  'zh-tw': 'zh-Hant',
+  'zh-hk': 'zh-Hant',
+  'zh-cn': 'zh-Hans',
+  'zh-sg': 'zh-Hant',
+}
+
 export const formatLocal = (local: string, key: string) => {
   const loc = local.toLowerCase()
 

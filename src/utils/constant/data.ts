@@ -53,6 +53,7 @@ export const WIDGET_DATAS: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
               [TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE]: {
                 location: '#:location:name#',
+                locationV3: '#:location:id#',
                 updateAt: '#formatUpdateTime:last_update#',
                 text: '#:now:text#',
                 code: {
@@ -248,11 +249,11 @@ export const WIDGET_BASE_CONFIG = {
         name: '不可展开',
         group: ''
       },
-      // {
-      //   id: 'always',
-      //   name: '始终展开',
-      //   group: ''
-      // }
+      {
+        id: 'always',
+        name: '始终展开',
+        group: ''
+      }
     ]
   }
 }
