@@ -7,13 +7,20 @@ import { weatherFormatter } from '../shared/weather'
 import logger from '../../utils/logger'
 import { LANGUAGE_MAP } from '../../utils/constant/language'
 
-const statsdRequest = (widgetConfig: WidgetConfig) => {
-  TpStatsd.increment(`weather.${widgetConfig.id}.${widgetConfig.uid}.total`)
-  TpStatsd.increment(`language.${widgetConfig.baseConfig.language}.total`)
-  TpStatsd.increment(`type.${widgetConfig.baseConfig.flavor}.${widgetConfig.baseConfig.theme}.total`)
+const statsdRequest = (widgetConfig: WidgetConfig, options: {
+  unit: string
+  language: string
+  location: string
+}) => {
+  TpStatsd.increment(`weather.${widgetConfig.id}.total`)
+  TpStatsd.increment(`language.${options.language}.${widgetConfig.id}`)
+  TpStatsd.increment(`location.${options.location}.${widgetConfig.id}`)
+  TpStatsd.increment(`unit.${options.unit}.${widgetConfig.id}`)
+  TpStatsd.increment(`type.${widgetConfig.baseConfig.flavor}.${widgetConfig.baseConfig.theme}.${widgetConfig.id}`)
   TpStatsd.increment('request.total')
 
   TpStatsd.unique('request.user', widgetConfig.uid)
+  TpStatsd.unique('widget', widgetConfig.id)
 }
 
 const getAutoLocation = (ip: string, location: string) => {
@@ -79,7 +86,11 @@ export const queryWidgetWeather: Controller = async (ctx) => {
 
   const results = await weatherFormatter(UIConfigs, qs)
 
-  statsdRequest(widgetConfig)
+  statsdRequest(widgetConfig, {
+    language: lan || 'zh-CHS',
+    location: loc || 'beijing',
+    unit: unit || baseConfig.unit || 'c'
+  })
 
   ctx.body = {
     success: true,
