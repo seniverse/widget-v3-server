@@ -169,17 +169,17 @@ export const WIDGET_BASE_CONFIG = {
       },
       {
         id: 'zh-Hant',
-        name: '繁体中文',
+        name: '繁體中文',
         group: ''
       },
       {
         id: 'en',
-        name: '英文',
+        name: 'English',
         group: ''
       },
       {
         id: 'ja',
-        name: '日文',
+        name: '日本語',
         group: ''
       },
       {
@@ -260,8 +260,8 @@ export const WIDGET_BASE_CONFIG = {
 
 export const DEFAULT_WIDGET_BASE_CONFIG = {
   flavor: 'bubble',
-  hover: 'enabled',
   theme: 'auto',
+  hover: 'enabled',
   location: 'WX4FBXXFKE4F',
   geolocation: false,
   language: 'zh-Hans',

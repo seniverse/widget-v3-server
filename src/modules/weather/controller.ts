@@ -11,11 +11,13 @@ const statsdRequest = (widgetConfig: WidgetConfig, options: {
   unit: string
   language: string
   location: string
-}) => {
+}, excludes: Set<string>) => {
+  for (const key of Object.keys(options)) {
+    if (excludes.has(key)) continue
+    TpStatsd.increment(`${key}.${options[key]}.${widgetConfig.id}`)
+  }
+
   TpStatsd.increment(`weather.${widgetConfig.id}.total`)
-  TpStatsd.increment(`language.${options.language}.${widgetConfig.id}`)
-  TpStatsd.increment(`location.${options.location}.${widgetConfig.id}`)
-  TpStatsd.increment(`unit.${options.unit}.${widgetConfig.id}`)
   TpStatsd.increment(`type.${widgetConfig.baseConfig.flavor}.${widgetConfig.baseConfig.theme}.${widgetConfig.id}`)
   TpStatsd.increment('request.total')
 
@@ -86,11 +88,7 @@ export const queryWidgetWeather: Controller = async (ctx) => {
 
   const results = await weatherFormatter(UIConfigs, qs)
 
-  statsdRequest(widgetConfig, {
-    language: lan || 'zh-CHS',
-    location: loc || 'beijing',
-    unit: unit || baseConfig.unit || 'c'
-  })
+  statsdRequest(widgetConfig, qs, new Set(['key']))
 
   ctx.body = {
     success: true,
