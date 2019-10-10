@@ -2,7 +2,7 @@
 import logger from '../utils/logger'
 import { Ctx, Controller, RequestConfig } from '../utils/types/server'
 
-export const isTargetRequest = (ctx: Ctx, whiteList: RequestConfig[]) => {
+const isTargetRequest = (ctx: Ctx, whiteList: RequestConfig[]) => {
   const method = ctx.request.method.toUpperCase()
   const { url } = ctx.request
   const checked = whiteList.some(option => option.method === method && option.url.test(url))
@@ -12,7 +12,7 @@ export const isTargetRequest = (ctx: Ctx, whiteList: RequestConfig[]) => {
 
 export const loggerMiddleware = (options: { whiteList?: RequestConfig[] }): Controller => async (ctx, next) => {
   const { whiteList = [] } = options
-  const checkWhite = await isTargetRequest(ctx, whiteList)
+  const checkWhite = isTargetRequest(ctx, whiteList)
   if (checkWhite) return await next()
 
   const url = ctx.request.URL

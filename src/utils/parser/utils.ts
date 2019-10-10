@@ -157,13 +157,13 @@ export const drivingRestrictionFormatter = (restriction: {
   index: number
   headerFormatter?: (data?: { date: string, memo: string }) => string
 }) => {
-  let header = '机动车尾号限行'
+  let header = '尾号限行'
   const content = []
   const { index = 0 } = extra
 
   if (!restriction.limits || !restriction.limits.length) {
     content.push({
-      text: '暂无数据',
+      text: '无数据',
       suffix: ''
     })
   } else {

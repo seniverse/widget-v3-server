@@ -80,7 +80,7 @@ export const queryWidgetWeather: Controller = async (ctx) => {
 
   const qs = {
     key,
-    language: lan || 'zh-CHS',
+    language: lan || 'zh-Hans',
     location: loc || 'beijing',
     unit: unit || baseConfig.unit || 'c',
   }
