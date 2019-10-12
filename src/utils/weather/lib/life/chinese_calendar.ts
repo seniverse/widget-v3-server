@@ -4,6 +4,7 @@ import { getUITemplateConfig } from '../../utils'
 
 export const DATA_SOURCE = 'v3/life/chinese_calendar'
 export const API_NAME = '农历'
+export const DATA_TTL = 6 * 60 * 60
 
 export const getConfig = getUITemplateConfig('')
 

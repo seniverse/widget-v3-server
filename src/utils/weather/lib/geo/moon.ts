@@ -5,6 +5,7 @@ import { getUITemplateConfig } from '../../utils'
 
 export const DATA_SOURCE = 'v3/geo/moon'
 export const API_NAME = '月出月落'
+export const DATA_TTL = 6 * 60 * 60
 
 export const getConfig = getUITemplateConfig(
   `(${DATA_SOURCE}).results[0].moon`

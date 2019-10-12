@@ -5,6 +5,7 @@ import { getUITemplateConfig } from '../../utils'
 
 export const DATA_SOURCE = 'v3/life/suggestion'
 export const API_NAME = '生活指数'
+export const DATA_TTL = 6 * 60 * 60
 
 export const getConfig = getUITemplateConfig(
   `(${DATA_SOURCE}).results[0].suggestion`

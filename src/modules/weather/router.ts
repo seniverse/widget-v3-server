@@ -9,7 +9,7 @@ export const baseUrl: string = '/api/weather'
 const modules: Route[] = [
   {
     method: 'GET',
-    route: '/:id',
+    route: '/:token',
     handlers: [
       platformMiddleware,
       statsd.stat('weather'),

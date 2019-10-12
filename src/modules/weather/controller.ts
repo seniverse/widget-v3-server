@@ -42,11 +42,26 @@ const checkDomainAllowed = (domain: string, allowedDomains: string[]): boolean =
 }
 
 export const queryWidgetWeather: Controller = async (ctx) => {
-  const { id } = ctx.params
-  const widgetConfig: WidgetConfig = await ctx.db.collection('widget').findOne({ id })
+  const { token } = ctx.params
+  const widgetConfig: WidgetConfig = await ctx.db.collection('widget').findOne({
+    $or: [
+      {
+        token: {
+          $exists: true,
+          $eq: token
+        }
+      },
+      {
+        token: {
+          $exists: false
+        },
+        id: token
+      }
+    ]
+  })
 
   if (!widgetConfig) {
-    throw new TpError.NotFoundError(`can not find widget config for ${id}`)
+    throw new TpError.NotFoundError(`can not find widget config for ${token}`)
   }
 
   // check domain

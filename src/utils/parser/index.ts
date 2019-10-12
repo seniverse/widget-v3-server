@@ -1,14 +1,14 @@
 
 import { TEMPLATE_DATA } from '../constant/data'
 import { TileConfig } from '../types/data'
-import { dataProvider } from './provider'
+import { dataProviderCache } from './provider'
 import * as templateParser from './template'
 import logger from '../logger'
 import TpError from '../error'
 
 export const tileParser = async (tileConfig: TileConfig, query: any) => {
   logger.debug(`[tileParser] ${JSON.stringify(tileConfig)}`)
-  const { availableSizes, config, UIType, size } = tileConfig
+  const { availableSizes, config, UIType, dataTTL, size } = tileConfig
   const defaultSize = size || availableSizes[0]
   const tileSizeConfigs = config[defaultSize] || config[availableSizes[0]]
   const result = []
@@ -17,6 +17,7 @@ export const tileParser = async (tileConfig: TileConfig, query: any) => {
     const { dataSource, params, template } = tileSizeConfig
     const qs = Object.assign({}, query, params)
 
+    const dataProvider = dataProviderCache(dataTTL)
     try {
       const data = await dataProvider(dataSource, qs)
 

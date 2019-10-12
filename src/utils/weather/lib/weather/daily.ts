@@ -5,6 +5,7 @@ import { getUITemplateConfig } from '../../utils'
 
 export const DATA_SOURCE = 'v3/weather/daily'
 export const API_NAME = '逐日预报'
+export const DATA_TTL = 2 * 60 * 60
 
 export const getConfig = getUITemplateConfig(
   `(${DATA_SOURCE}).results[0].daily`

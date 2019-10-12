@@ -4,6 +4,7 @@ import { getUITemplateConfig } from '../../utils'
 
 export const DATA_SOURCE = 'v3/weather/hourly'
 export const API_NAME = '逐小时预报'
+export const DATA_TTL = 15 * 60
 
 export const getConfig = getUITemplateConfig(
   `(${DATA_SOURCE}).results[0].hourly`

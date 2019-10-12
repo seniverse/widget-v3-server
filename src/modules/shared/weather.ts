@@ -10,6 +10,7 @@ import { FULL_RIGHT } from '../../utils/constant/rights'
 const widgetComponentConfig = buildWidgetComponents(FULL_RIGHT)
 Object.assign(widgetComponentConfig, {
   [WIDGET_DATAS.MAIN.dataType]: {
+    dataTTL: WIDGET_DATAS.MAIN.dataTTL,
     getConfig: WIDGET_DATAS.MAIN.getConfig
   }
 })
@@ -27,9 +28,11 @@ export const weatherFormatter = async (UIConfigs: {
 
   for (const UIConfig of UIConfigs) {
     logger.info(`[weatherFormatter:start] ${JSON.stringify(UIConfig)}`)
+    const { getConfig, dataTTL } = widgetComponentConfig[UIConfig.dataType]
+
     const tileConfig = Object.assign(
-      {},
-      widgetComponentConfig[UIConfig.dataType].getConfig(query.language, query.unit),
+      { dataTTL },
+      getConfig(query.language, query.unit),
       UIConfig
     )
 

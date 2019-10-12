@@ -38,6 +38,11 @@ export async function initDatabaseIndexs(options: { url: string, dbName: string 
     )
 
     await db.collection('widget').createIndex(
+      { token: 1 },
+      { name: 'widget_token', background: true }
+    )
+
+    await db.collection('widget').createIndex(
       { uid: 1 },
       { name: 'widget_uid', background: true }
     )

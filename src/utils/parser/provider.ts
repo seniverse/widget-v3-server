@@ -29,7 +29,7 @@ const _dataProvider = async (dataSource: string, qs: any) => {
   return result
 }
 
-export const dataProvider = cache.wrapFn(
+export const dataProviderCache = cache.wrapFn(
   _dataProvider,
   'provider',
   { ttl: 100 }

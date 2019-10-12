@@ -30,19 +30,21 @@ function wrapFn(fn, prefix = 'cache', options = {}) {
     ttl: options['ttl'] || cacheConfig.ttl
   }
 
-  return (...args) => {
+  return (ttl?: number) => (...args) => {
     let hitCache = true
     const tmpKey = getCacheKey(args)
     const cacheKey = `${prefix}-${fn.name}${tmpKey ? `-${tmpKey}` : ''}`
+
+    if (ttl) finallyOptions.ttl = ttl
 
     return cache.wrap(cacheKey, () => {
       hitCache = false
       return fn(...args)
     }, finallyOptions).then((data) => {
       if (hitCache) {
-        logger.info(`[FUNC-CACHE:GET][${cacheKey}]`)
+        logger.info(`[FUNC-CACHE:GET][${cacheKey}] - ${finallyOptions.ttl}`)
       } else {
-        logger.info(`[FUNC-CACHE:SET][${cacheKey}]`)
+        logger.info(`[FUNC-CACHE:SET][${cacheKey}] - ${finallyOptions.ttl}`)
       }
       return data
     })

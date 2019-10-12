@@ -57,10 +57,13 @@ export const updateWidget: Controller = async (ctx) => {
         iid,
         baseConfig,
         allowedDomains,
-        UIConfigs: widgetUIConfigs
+        UIConfigs: widgetUIConfigs,
+        updatedAt: new Date()
       },
       $setOnInsert: {
-        id: uuid.v4()
+        id: uuid.v4(),
+        token: uuid.v4(),
+        createdAt: new Date()
       }
     },
     { upsert: true, returnOriginal: false }
@@ -68,7 +71,26 @@ export const updateWidget: Controller = async (ctx) => {
 
   ctx.body = {
     success: true,
-    results: result.value.id
+    results: result.value.token || result.value.id
+  }
+}
+
+export const updateWidgetToken: Controller = async (ctx) => {
+  const { id } = ctx.params
+
+  const result = await ctx.db.collection('widget').findOneAndUpdate(
+    { id },
+    {
+      $set: {
+        token: uuid.v4(),
+        updatedAt: new Date()
+      }
+    },
+    { upsert: false, returnOriginal: false }
+  )
+  ctx.body = {
+    success: true,
+    results: result.value.token
   }
 }
 

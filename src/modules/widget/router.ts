@@ -17,6 +17,14 @@ const modules: Route[] = [
     ]
   },
   {
+    method: 'POST',
+    route: '/:id/token',
+    handlers: [
+      statsd.stat('updateWidgetToken'),
+      controller.updateWidgetToken
+    ]
+  },
+  {
     method: 'GET',
     route: '/config',
     handlers: [

@@ -4,6 +4,7 @@ import { getUITemplateConfig } from '../../utils'
 
 export const DATA_SOURCE = 'v3/life/driving_restriction'
 export const API_NAME = '尾号限行'
+export const DATA_TTL = 6 * 60 * 60
 
 export const getConfig = getUITemplateConfig('')
 

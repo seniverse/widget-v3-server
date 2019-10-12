@@ -22,6 +22,7 @@ export const APIS: Map<symbol, {
   API_CONFIGS: ApiConfig[] | ApiConfig
   API_NAME: string
   DATA_SOURCE: string
+  DATA_TTL: string
   WIDGET_PREFIX: string
   getConfig: (field: any) => (language: string, unit: string) => any
 }> = shadowImport(
@@ -34,6 +35,7 @@ export const APIS: Map<symbol, {
       'API_CONFIGS',
       'API_NAME',
       'DATA_SOURCE',
+      'DATA_TTL',
       'getConfig'
     ],
     nameFormatter: (_, module) => module.DATA_SOURCE.split('/').join('_'),
@@ -67,6 +69,7 @@ export const buildWidgetComponents = (rights: {
     UIType: string
     apiGroup: string
     apiName: string
+    dataTTL: number
     getConfig: (language: string, unit: string) => any
   }
 } => Object.keys(rights.secondary).reduce((dict, rightName) => {
@@ -83,6 +86,7 @@ export const buildWidgetComponents = (rights: {
   const {
     API_NAME,
     getConfig,
+    DATA_TTL,
     WIDGET_PREFIX
   } = rawConfig
 
@@ -99,6 +103,7 @@ export const buildWidgetComponents = (rights: {
         UIType,
         apiGroup: API_NAME,
         apiName: name,
+        dataTTL: DATA_TTL,
         getConfig: getConfig({
           UIType,
           key: fieldKey,

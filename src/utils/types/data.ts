@@ -13,6 +13,7 @@ interface TileSizeConfig {
 export interface TileConfig {
   UIType: string
   dataType: string
+  dataTTL: number
   size?: string
   availableSizes: string[]
   config: {

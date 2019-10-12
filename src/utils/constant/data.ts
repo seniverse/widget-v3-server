@@ -33,6 +33,7 @@ export const WIDGET_DATAS: {
     name: string
     UIType: string
     dataType: string
+    dataTTL: number
     getConfig: (language: string, unit: string) => any
   }
 } = {
@@ -40,6 +41,7 @@ export const WIDGET_DATAS: {
     name: '主组件',
     dataType: 'main.weather',
     UIType: TEMPLATE_DATA.UITYPE.MAIN,
+    dataTTL: 200,
     getConfig: (language: string, unit: string) => ({
       availableSizes: ['3,2'],
       dataType: 'main.weather',
