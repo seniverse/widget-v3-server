@@ -1,4 +1,5 @@
 
+import { Db } from 'mongodb'
 import { WidgetConfig } from '../../utils/types/data'
 import { Controller } from '../../utils/types/server'
 import TpError from '../../utils/error'
@@ -11,7 +12,7 @@ const statsdRequest = (widgetConfig: WidgetConfig, options: {
   unit: string
   language: string
   location: string
-}, excludes: Set<string>) => {
+}, excludes: Set<string>, db: Db) => {
   for (const key of Object.keys(options)) {
     if (excludes.has(key)) continue
     TpStatsd.increment(`${key}.${options[key]}.${widgetConfig.id}`)
@@ -23,6 +24,21 @@ const statsdRequest = (widgetConfig: WidgetConfig, options: {
 
   TpStatsd.unique('request.user', widgetConfig.uid)
   TpStatsd.unique('widget', widgetConfig.id)
+
+  process.nextTick(async () => {
+    await db.collection('stat').updateOne(
+      {
+        uid: widgetConfig.uid,
+        token: widgetConfig.token || widgetConfig.id
+      },
+      {
+        $inc: {
+          count: 1
+        }
+      },
+      { upsert: true }
+    )
+  })
 }
 
 const getAutoLocation = (ip: string, location: string) => {
@@ -103,7 +119,7 @@ export const queryWidgetWeather: Controller = async (ctx) => {
 
   const results = await weatherFormatter(UIConfigs, qs)
 
-  statsdRequest(widgetConfig, qs, new Set(['key']))
+  statsdRequest(widgetConfig, qs, new Set(['key']), ctx.db)
 
   ctx.body = {
     success: true,

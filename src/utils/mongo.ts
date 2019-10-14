@@ -46,6 +46,11 @@ export async function initDatabaseIndexs(options: { url: string, dbName: string 
       { uid: 1 },
       { name: 'widget_uid', background: true }
     )
+
+    await db.collection('stat').createIndex(
+      { token: 1, uid: 1 },
+      { name: 'widget_token_stat', background: true }
+    )
   } catch (e) {
     logger.error(e)
   }

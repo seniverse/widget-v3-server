@@ -45,6 +45,7 @@ interface RawWidgetConfig {
 
 export interface WidgetConfig extends RawWidgetConfig {
   id: string
+  token: string
   createdAt: Date
   updatedAt: Date
 }
