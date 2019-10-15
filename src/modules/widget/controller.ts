@@ -25,7 +25,7 @@ export const updateWidget: Controller = async (ctx) => {
     iid,
     baseConfig,
     UIConfigs,
-    allowedDomains = [],
+    allowedDomains,
   } = ctx.request.body as any
 
   const check = WidgetConfigSchema.validate({
@@ -34,7 +34,7 @@ export const updateWidget: Controller = async (ctx) => {
     iid,
     baseConfig,
     UIConfigs,
-    allowedDomains
+    allowedDomains: allowedDomains || []
   })
   if (check.error) throw new TpError.WidgetError(check.error)
 
@@ -48,18 +48,20 @@ export const updateWidget: Controller = async (ctx) => {
     dataType
   }))
 
+  const update = {
+    key,
+    iid,
+    baseConfig,
+    UIConfigs: widgetUIConfigs,
+    updatedAt: new Date()
+  }
+  if (allowedDomains) update['allowedDomains'] = allowedDomains
+
   // one user can only create one widget
   const result = await ctx.db.collection('widget').findOneAndUpdate(
     { uid },
     {
-      $set: {
-        key,
-        iid,
-        baseConfig,
-        allowedDomains,
-        UIConfigs: widgetUIConfigs,
-        updatedAt: new Date()
-      },
+      $set: update,
       $setOnInsert: {
         id: uuid.v4(),
         token: uuid.v4(),
