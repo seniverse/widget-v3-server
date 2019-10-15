@@ -20,7 +20,9 @@ $ source ~/.bashrc
 $ npm run init
 ```
 
-`$ npm run init`命令将会根据用户在环境变量中配置的 API key，在数据库中插入一个插件实例，其中 插件的 UI 配置将会使用默认配置，而展示的数据配置则是全量配置，但实际渲染插件的时候则仅会根据 API key 的权限渲染数据。插件的数据结构为：
+`$ npm run init`命令将会根据用户在环境变量中配置的 API key，在数据库中插入一个插件实例，其中 插件的 UI 配置将会使用默认配置，而展示的数据配置则是全量配置，但实际渲染插件的时候则仅会根据 API key 的权限渲染数据。
+
+### 插件的数据结构
 
 ```json
 {
@@ -85,7 +87,7 @@ $ npm run init
     },
     // 插件 ID
     "id" : "93018354-6877-4a24-89ec-a380f271b51a",
-    // 插件 token，将用于获取具体天气数据
+    // 插件 token，将用于前端调用，获取具体天气数据
     "token": "93018354-6877-4a24-89ec-a380f271b51b",
     // API 产品密钥。切勿泄露
     "key" : "your api key"
@@ -127,5 +129,5 @@ Seniverse V3 插件可展示的数据，将会根据用户自己的 API key 决�
 根据配置好的插件 ID 可获取到具体的天气数据：
 
 ```
-GET /api/weather/:widgetId
+GET /api/weather/:widgetToken
 ```
