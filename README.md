@@ -13,7 +13,7 @@ $ npm i
 # 之后进入控制台，找到购买好的产品实例，获取 API 密钥
 # 将密钥配置到服务器或本机的 .bash_profile 或 .bashrc 文件中。以 .bashrc 为例
 $ vim ~/.bashrc
-# 例如，密钥为 123456，则加入 export SENIVERSE_API_KEY=123456
+# 例如，密钥为 123456，则加入 export SENIVERSE_API_KEY=123456，并刷新配置文件
 $ source ~/.bashrc
 
 # 生成插件
@@ -63,8 +63,8 @@ $ npm run init
     ],
     // 插件被调用时允许的调用方域名。可防止被他人盗取滥用。可为空，为空时则不做检查
     "allowedDomains" : [
-        "http://localhost:3001",
-        "http://localhost:3000"
+        "localhost:3000",
+        "127.0.0.1:3000"
     ],
     // 插件基本的 UI 样式配置
     "baseConfig" : {
@@ -83,8 +83,10 @@ $ npm run init
         // 插件单位，具体可见 https://docs.seniverse.com/api/start/unit.html
         "unit" : "c"
     },
-    // 插件 ID，将用于获取具体天气数据
+    // 插件 ID
     "id" : "93018354-6877-4a24-89ec-a380f271b51a",
+    // 插件 token，将用于获取具体天气数据
+    "token": "93018354-6877-4a24-89ec-a380f271b51b",
     // API 产品密钥。切勿泄露
     "key" : "your api key"
 }

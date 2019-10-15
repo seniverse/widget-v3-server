@@ -64,6 +64,11 @@ const checkHeader = (params: string[]): Controller => async (ctx, next) => {
   await next()
 }
 
+export const getDomainRegexp = (domain: string): RegExp => {
+  if (/^https?:\/{2}/.test(domain)) return new RegExp(`^${domain}`)
+  return new RegExp(`^https?:\/{2}${domain}`)
+}
+
 export default {
   query: checkQuery,
   body: checkBody,

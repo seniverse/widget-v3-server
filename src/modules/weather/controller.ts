@@ -7,6 +7,7 @@ import TpStatsd from '../../utils/statsd'
 import { weatherFormatter } from '../shared/weather'
 import logger from '../../utils/logger'
 import { LANGUAGE_MAP } from '../../utils/constant/language'
+import { getDomainRegexp } from '../shared/check'
 
 const statsdRequest = (widgetConfig: WidgetConfig, options: {
   unit: string
@@ -52,7 +53,7 @@ const getAutoLanguage = (language: string): string =>
 const checkDomainAllowed = (domain: string, allowedDomains: string[]): boolean => {
   if (!allowedDomains.length) return true
   for (const allowedDomain of allowedDomains) {
-    if (new RegExp(allowedDomain).test(domain)) return true
+    if (getDomainRegexp(allowedDomain).test(domain)) return true
   }
   return false
 }
