@@ -94,7 +94,7 @@ $ npm run init
 }
 ```
 
-- 插件基本的样式配置项可见：[data 文件中的 WIDGET_BASE_CONFIG 常量](./src/utils/constant/data.ts#L31)
+- 插件基本的样式配置项可见：[data 文件中的 WIDGET_BASE_CONFIG 常量](./src/utils/constant/data.ts#L136)
 - 插件天气相关的配置项可见：[天气数据配置](./src/utils/weather)，或直接通过`$ npm run weather-permission`输出
 
 ### 项目结构
