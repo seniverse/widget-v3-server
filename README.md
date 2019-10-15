@@ -24,7 +24,7 @@ $ npm run init
 
 ### 插件的数据结构
 
-```json
+```
 {
     // 用户 ID，和插件一一对应
     "uid" : "c1b5cd77-2323-46fe-90c8-4616b29e2bc7",
@@ -93,6 +93,9 @@ $ npm run init
     "key" : "your api key"
 }
 ```
+
+- 插件基本的样式配置项可见：[data 文件中的 WIDGET_BASE_CONFIG 常量](./src/utils/constant/data.ts#L31)
+- 插件天气相关的配置项可见：[天气数据配置](./src/utils/weather)，或直接通过`$ npm run weather-permission`输出
 
 ### 项目结构
 
