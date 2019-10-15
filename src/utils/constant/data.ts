@@ -234,7 +234,7 @@ export const WIDGET_BASE_CONFIG = {
     ]
   },
   geolocation: {
-    name: '启用自动定位',
+    name: '自动定位',
     type: 'switch',
   },
   hover: {

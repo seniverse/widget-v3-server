@@ -100,6 +100,8 @@ export const getBaseConfig: Controller = async (ctx) => {
   const { uid } = ctx.request.query
 
   let baseConfig: WidgetBaseConfig = Object.assign({}, DEFAULT_WIDGET_BASE_CONFIG)
+  if (uid === 'demo') delete baseConfig.flavor
+
   const result: WidgetConfig = await ctx.db.collection('widget').findOne({ uid })
   if (result) {
     baseConfig = result.baseConfig
