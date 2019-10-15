@@ -35,7 +35,7 @@ echo "Install node_modules..."
 (cd ../src && npm install && cd ..)
 
 echo "Get production config..."
-(cd ../src/config && git clone git@git.seniverse.com:lab/widget-v3-config.git && mv -f ./widget-v3-config/* ./env)
+(cd ../src/config && rm -rf ./widget-v3-config && git clone git@git.seniverse.com:lab/widget-v3-config.git && mv -f ./widget-v3-config/* ./env)
 
 echo "Build server source from ES6..."
 (cd ../src && npm run build && cd ..)
