@@ -55,7 +55,7 @@ export const updateWidget: Controller = async (ctx) => {
     UIConfigs: widgetUIConfigs,
     updatedAt: new Date()
   }
-  if (allowedDomains) update['allowedDomains'] = allowedDomains
+  if (allowedDomains) update['allowedDomains'] = allowedDomains || []
 
   // one user can only create one widget
   const result = await ctx.db.collection('widget').findOneAndUpdate(

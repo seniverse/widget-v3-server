@@ -51,7 +51,7 @@ const getAutoLanguage = (language: string): string =>
   LANGUAGE_MAP[language.toLowerCase()] || language
 
 const checkDomainAllowed = (domain: string, allowedDomains: string[]): boolean => {
-  if (!allowedDomains.length) return true
+  if (!allowedDomains || !allowedDomains.length) return true
   for (const allowedDomain of allowedDomains) {
     if (getDomainRegexp(allowedDomain).test(domain)) return true
   }
