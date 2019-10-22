@@ -8,6 +8,8 @@ import { widgetData } from './weather'
 const UID = uuid.v4()
 const KEY = process.env.SENIVERSE_API_KEY
 
+if (!KEY) throw new​​ Error(`can not find SENIVERSE_API_KEY in env. Check README.md for more details`)
+
 const inject = async () => {
   const db = await getMongo(config.store.mongo)
   const result = await db.collection('widget').findOneAndUpdate(
