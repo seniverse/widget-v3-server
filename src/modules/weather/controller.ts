@@ -91,24 +91,16 @@ export const queryWidgetWeather: Controller = async (ctx) => {
 
   const {
     unit,
-    language,
-    location,
-    geolocation
+    geolocation,
+    location = baseConfig.location,
+    language = baseConfig.language
   } = ctx.request.query
 
   const autoLocation = `${geolocation}` === 'true' || baseConfig.geolocation
-  const autoLanguage = language === 'auto' || baseConfig.language === 'auto'
-  const requestLocation = location || baseConfig.location
-
   const detected = ctx.request.query._detected || ctx.request.query.detected
-  const lan = getAutoLanguage(
-    autoLanguage
-      ? (detected || language || baseConfig.language)
-      : (language || baseConfig.language)
-  )
-  const loc = autoLocation
-    ? getAutoLocation(ctx.request.ip, requestLocation)
-    : requestLocation
+
+  const lan = getAutoLanguage(language === 'auto' ? detected : language)
+  const loc = autoLocation ? getAutoLocation(ctx.request.ip, location) : location
 
   const qs = {
     key,
