@@ -21,7 +21,7 @@ export const wind_direction = 'Wind'
 export const updateTime = 'update at {time}'
 
 export const today_temperature = 'Low/High'
-export const yesterday_temp = 'Yesterday'
+export const yesterday_temperature = 'Yesterday'
 export const today_code = 'Weather today'
 export const today_sun = 'Sun rise/set'
 export const today_moon = 'Moon rise/set'
