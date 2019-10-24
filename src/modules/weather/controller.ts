@@ -90,8 +90,8 @@ export const queryWidgetWeather: Controller = async (ctx) => {
   }
 
   const {
-    unit,
     geolocation,
+    unit = baseConfig.unit,
     location = baseConfig.location,
     language = baseConfig.language
   } = ctx.request.query
@@ -99,18 +99,29 @@ export const queryWidgetWeather: Controller = async (ctx) => {
   const autoLocation = `${geolocation}` === 'true' || baseConfig.geolocation
   const detected = ctx.request.query._detected || ctx.request.query.detected
 
-  const lan = getAutoLanguage(language === 'auto' ? detected : language)
-  const loc = autoLocation ? getAutoLocation(ctx.request.ip, location) : location
+  const lan = getAutoLanguage(language === 'auto' ? detected : language) || 'zh-Hans'
+  const loc = (autoLocation ? getAutoLocation(ctx.request.ip, location) : location) || 'WX4FBXXFKE4F'
 
   const qs = {
     key,
-    language: lan || 'zh-Hans',
-    location: loc || 'beijing',
-    unit: unit || baseConfig.unit || 'c',
+    language: lan,
+    location: loc,
+    unit: unit || 'c',
   }
   logger.info(`[queryWidgetWeather] ${JSON.stringify(widgetConfig)} - ${JSON.stringify(qs)}`)
 
-  const results = await weatherFormatter(UIConfigs, qs)
+  let results: any
+  try {
+    results = await weatherFormatter(UIConfigs, qs)
+  } catch (e) {
+    if (e.signal === 'LOCATION_ERROR') {
+      results = await weatherFormatter(UIConfigs, Object.assign({}, qs, {
+        location: 'WX4FBXXFKE4F'
+      }))
+    } else {
+      throw e
+    }
+  }
 
   statsdRequest(widgetConfig, qs, new Set(['key']), ctx.db)
 

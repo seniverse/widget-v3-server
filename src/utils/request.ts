@@ -11,7 +11,7 @@ import TpError from './error'
 const retryRequest = async (
   options: any,
   timeout: number[],
-  onError?: (err: Error | null | undefined, count: number) => void
+  onError?: (err: Error | null | undefined, count: number, url: string) => void
 ): Promise<any> => {
   let err: Error
   for (let i = 0; i < timeout.length; i += 1) {
@@ -20,7 +20,7 @@ const retryRequest = async (
       return await request(options)
     } catch (e) {
       err = e
-      onError && onError(e, i)
+      onError && onError(e, i, options.url)
     }
   }
   throw new TpError.RetryTimeoutError(err)

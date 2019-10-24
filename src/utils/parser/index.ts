@@ -4,7 +4,7 @@ import { TileConfig } from '../types/data'
 import { dataProviderCache } from './provider'
 import * as templateParser from './template'
 import logger from '../logger'
-import TpError from '../error'
+import TpError, { ERRORS } from '../error'
 
 export const tileParser = async (tileConfig: TileConfig, query: any) => {
   logger.debug(`[tileParser] ${JSON.stringify(tileConfig)}`)
@@ -47,6 +47,9 @@ export const tileParser = async (tileConfig: TileConfig, query: any) => {
       }
     } catch (e) {
       logger.error(e)
+      if (e.errorCode === ERRORS.ServiceRequestError[0]) {
+        throw e
+      }
     }
   }
 
