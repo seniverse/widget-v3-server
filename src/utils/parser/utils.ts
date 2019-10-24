@@ -5,6 +5,7 @@ import TpError from '../error'
 import * as ALARM from '../constant/alarm'
 import { formatLocal } from '../constant/language'
 import { TEMPLATE_DATA } from '../constant/data'
+import { unitFormatter } from '../weather/utils'
 
 export function returnEverything(data: any): any {
   return data
@@ -71,7 +72,7 @@ export const weatherHourlyFormatterForChart = (data: {
   code: string
   text: string
   temperature: string
-}[]) => data.map((d) => ({
+}[], extra: { unit: string }) => data.map((d) => ({
   content: [
     [
       {
@@ -86,7 +87,7 @@ export const weatherHourlyFormatterForChart = (data: {
       },
       {
         type: 'text',
-        text: `${d.text} ${d.temperature}°`,
+        text: `${d.text} ${d.temperature}${unitFormatter(extra.unit)}`,
       }
     ]
   ],

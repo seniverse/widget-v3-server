@@ -25,7 +25,7 @@ export const API_CONFIGS = [
                 [TEMPLATE_DATA.TEMPLATE.PIPLELINE]: [
                   {
                     funcName: 'drivingRestrictionFormatter',
-                    params: {}
+                    params: { language }
                   }
                 ]
               }
@@ -52,7 +52,7 @@ export const API_CONFIGS = [
                 [TEMPLATE_DATA.TEMPLATE.PIPLELINE]: [
                   {
                     funcName: 'restrictionFormatterForCarousel',
-                    params: {}
+                    params: { language }
                   }
                 ]
               }

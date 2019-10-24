@@ -28,7 +28,7 @@ export const API_CONFIGS = [
                 [TEMPLATE_DATA.TEMPLATE.PIPLELINE]: [
                   {
                     funcName: 'weatherHourlyFormatterForChart',
-                    params: {}
+                    params: { unit, language }
                   }
                 ]
               }

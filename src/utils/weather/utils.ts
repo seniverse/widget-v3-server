@@ -120,3 +120,6 @@ export const shadowImport = (folder: string, options: {
       return map
     }, new Map() as Map<symbol, any>)
 }
+
+export const unitFormatter = (unit: string): string =>
+  `°${unit.toUpperCase()}`

@@ -1,6 +1,7 @@
 
 import { WidgetBaseConfig } from '../types/data'
 import * as districts from './districts.json'
+import { unitFormatter } from '../weather/utils'
 
 export const TIMES = {
   DAY: 24 * 60 * 60,
@@ -61,7 +62,7 @@ export const WIDGET_DATAS: {
                 code: {
                   now: '#:now:code#',
                 },
-                temperature: '#:now:temperature#°',
+                temperature: '#:now:temperature#',
               }
             }
           },
@@ -90,12 +91,12 @@ export const WIDGET_DATAS: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
               [TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE]: {
                 yesterday: {
-                  low: '#:daily[0]:low#°',
-                  high: '#:daily[0]:high#°',
+                  low: `#:daily[0]:low#${unitFormatter(unit)}`,
+                  high: `#:daily[0]:high#${unitFormatter(unit)}`,
                 },
                 today: {
-                  low: '#:daily[1]:low#°',
-                  high: '#:daily[1]:high#°',
+                  low: `#:daily[1]:low#${unitFormatter(unit)}`,
+                  high: `#:daily[1]:high#${unitFormatter(unit)}`,
                 },
                 code: {
                   day: '#:daily[1]:code_day#',

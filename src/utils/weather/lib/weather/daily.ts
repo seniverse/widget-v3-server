@@ -1,7 +1,7 @@
 
 import { TEMPLATE_DATA } from '../../../constant/data'
 import { formatLocal } from '../../../constant/language'
-import { getUITemplateConfig } from '../../utils'
+import { unitFormatter, getUITemplateConfig } from '../../utils'
 
 export const DATA_SOURCE = 'v3/weather/daily'
 export const API_NAME = '逐日预报'
@@ -69,8 +69,8 @@ export const API_CONFIGS = [
                   header: formatLocal(language, 'today_temperature'),
                   content: [
                     {
-                      text: '#:low#°/#:high#°',
-                      suffix: ''
+                      text: `#:low#/#:high#`,
+                      suffix: unitFormatter(unit)
                     }
                   ]
                 }
@@ -97,8 +97,8 @@ export const API_CONFIGS = [
                   header: formatLocal(language, 'yesterday_temperature'),
                   content: [
                     {
-                      text: '#:low#°/#:high#°',
-                      suffix: ''
+                      text: `#:low#/#:high#`,
+                      suffix: unitFormatter(unit)
                     }
                   ]
                 }
@@ -129,7 +129,7 @@ export const API_CONFIGS = [
                     {
                       type: 'icon',
                       text: '#:code_day#',
-                      suffix: ' #:low#°/#:high#°'
+                      suffix: ` #:low#/#:high#${unitFormatter(unit)}`
                     }
                   ]
                 }
@@ -173,7 +173,7 @@ export const API_CONFIGS = [
                       },
                       {
                         type: 'text',
-                        text: '#:high#°'
+                        text: `#:high#${unitFormatter(unit)}`
                       }
                     ],
                     [
@@ -187,7 +187,7 @@ export const API_CONFIGS = [
                       },
                       {
                         type: 'text',
-                        text: '#:low#°'
+                        text: `#:low#${unitFormatter(unit)}`
                       }
                     ]
                   ],

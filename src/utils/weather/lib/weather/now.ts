@@ -1,7 +1,7 @@
 
 import { TEMPLATE_DATA } from '../../../constant/data'
 import { formatLocal, formatUnit } from '../../../constant/language'
-import { getUITemplateConfig } from '../../utils'
+import { unitFormatter, getUITemplateConfig } from '../../utils'
 
 export const DATA_SOURCE = 'v3/weather/now'
 export const API_NAME = '天气实况'
@@ -31,12 +31,12 @@ export const API_CONFIGS = {
     temperature: {
       name: '温度',
       rightKeys: ['basic', 'advanced'],
-      getContent: (language: string) => ({
+      getContent: (language: string, unit: string) => ({
         header: formatLocal(language, 'temperature'),
         content: [
           {
-            text: '#:temperature#°',
-            suffix: ''
+            text: '#:temperature#',
+            suffix: unitFormatter(unit)
           }
         ]
       })
@@ -44,12 +44,12 @@ export const API_CONFIGS = {
     feels_like: {
       name: '体感温度',
       rightKeys: ['advanced'],
-      getContent: (language: string) => ({
+      getContent: (language: string, unit: string) => ({
         header: formatLocal(language, 'feels_like'),
         content: [
           {
-            text: '#:feels_like#°',
-            suffix: ''
+            text: '#:feels_like#',
+            suffix: unitFormatter(unit)
           }
         ]
       })
@@ -124,12 +124,12 @@ export const API_CONFIGS = {
     dew_point: {
       name: '露点温度',
       rightKeys: ['advanced'],
-      getContent: (language: string) => ({
+      getContent: (language: string, unit: string) => ({
         header: formatLocal(language, 'dew_point'),
         content: [
           {
-            text: '#:dew_point#°',
-            suffix: ''
+            text: '#:dew_point#',
+            suffix: unitFormatter(unit)
           }
         ]
       })
