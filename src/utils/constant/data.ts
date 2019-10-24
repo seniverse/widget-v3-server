@@ -62,7 +62,7 @@ export const WIDGET_DATAS: {
                 code: {
                   now: '#:now:code#',
                 },
-                temperature: '#:now:temperature#',
+                temperature: '#:now:temperature#°',
               }
             }
           },
