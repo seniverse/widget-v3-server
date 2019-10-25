@@ -146,12 +146,12 @@ export const WIDGET_BASE_CONFIG = {
     options: [
       {
         id: 'c',
-        name: '摄氏',
+        name: '摄氏 °C',
         group: ''
       },
       {
         id: 'f',
-        name: '华氏',
+        name: '华氏 °F',
         group: ''
       }
     ]
