@@ -68,9 +68,7 @@ export const WIDGET_DATAS: {
           },
           {
             dataSource: '(v3/geo/sun).results[0].sun[0]',
-            params: {
-              days: 1
-            },
+            params: { days: 1 },
             template: {
               type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
               [TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE]: {

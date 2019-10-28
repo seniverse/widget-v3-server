@@ -38,7 +38,8 @@ export const ALARM_MAPPING = {
   '持续低温': 'cold',
   '电线积冰': 'freeze-wire',
   '雾霾': 'haze',
-  '沙尘': 'duststorm'
+  '沙尘': 'duststorm',
+  default: 'multi'
 }
 
 export const ALARM_EN_MAPPING = {
@@ -72,5 +73,6 @@ export const ALARM_EN_MAPPING = {
   '持续低温': 'Cold Spell',
   '电线积冰': 'Wire Ice',
   '雾霾': 'Haze',
-  '沙尘': 'Sand Storm'
+  '沙尘': 'Sand Storm',
+  default: 'multi'
 }

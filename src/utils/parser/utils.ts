@@ -62,7 +62,7 @@ export const weatherAlarmFormatter = (alarms: {
       ...others,
       pubDate,
       levelCode: ALARM.COLOR_MAPPING[alarm.level] || ALARM.COLOR_MAPPING['未知'],
-      typeCode: ALARM.ALARM_MAPPING[alarm.type] || ALARM.ALARM_MAPPING['雷电']
+      typeCode: ALARM.ALARM_MAPPING[alarm.type] || ALARM.ALARM_MAPPING.default
     }
   })
 })
