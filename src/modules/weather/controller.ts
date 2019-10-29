@@ -9,14 +9,27 @@ import logger from '../../utils/logger'
 import { LANGUAGE_MAP } from '../../utils/constant/language'
 import { getDomainRegexp } from '../shared/check'
 
-const statsdRequest = (widgetConfig: WidgetConfig, options: {
-  unit: string
-  language: string
-  location: string
-}, excludes: Set<string>, db: Db) => {
-  for (const key of Object.keys(options)) {
+const statsdRequest = (options: {
+  widgetConfig: WidgetConfig
+  qs: {
+    unit: string
+    language: string
+    location: string
+  }
+  excludes: Set<string>
+  db: Db
+  domain: string
+}) => {
+  const {
+    qs,
+    db,
+    domain,
+    excludes,
+    widgetConfig
+  } = options
+  for (const key of Object.keys(qs)) {
     if (excludes.has(key)) continue
-    TpStatsd.increment(`${key}.${options[key]}.${widgetConfig.id}`)
+    TpStatsd.increment(`${key}.${qs[key]}.${widgetConfig.id}`)
   }
 
   TpStatsd.increment(`weather.${widgetConfig.id}.total`)
@@ -27,18 +40,65 @@ const statsdRequest = (widgetConfig: WidgetConfig, options: {
   TpStatsd.unique('widget', widgetConfig.id)
 
   process.nextTick(async () => {
+    // ensure exists
     await db.collection('stat').updateOne(
       {
         uid: widgetConfig.uid,
-        token: widgetConfig.token || widgetConfig.id
+        token: widgetConfig.token || widgetConfig.id,
       },
       {
-        $inc: {
-          count: 1
+        $setOnInsert: {
+          domains: [],
+          count: 0
         }
       },
       { upsert: true }
     )
+
+    const res = await db.collection('stat').updateOne(
+      {
+        uid: widgetConfig.uid,
+        token: widgetConfig.token || widgetConfig.id,
+        domains: {
+          $elemMatch: {
+            domain,
+          }
+        }
+      },
+      {
+        $inc: {
+          count: 1,
+          'domains.$.count': 1
+        }
+      }
+    )
+
+    if (res.matchedCount === 0) {
+      await db.collection('stat').updateOne(
+        {
+          uid: widgetConfig.uid,
+          token: widgetConfig.token || widgetConfig.id,
+          domains: {
+            $not: {
+              $elemMatch: {
+                domain
+              }
+            }
+          }
+        },
+        {
+          $addToSet: {
+            domains: {
+              domain,
+              count: 1
+            }
+          },
+          $inc: {
+            count: 1
+          }
+        }
+      )
+    }
   })
 }
 
@@ -123,7 +183,13 @@ export const queryWidgetWeather: Controller = async (ctx) => {
     }
   }
 
-  statsdRequest(widgetConfig, qs, new Set(['key']), ctx.db)
+  statsdRequest({
+    qs,
+    domain,
+    db: ctx.db,
+    widgetConfig,
+    excludes: new Set(['key'])
+  })
 
   ctx.body = {
     success: true,
