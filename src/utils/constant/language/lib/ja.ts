@@ -22,6 +22,7 @@ export const updateTime = '{time}発布'
 
 export const today_temperature = '最低/高気温'
 export const yesterday_temperature = '昨日の気温'
+export const tomorrow_temperature = '明日の気温'
 export const today_code = '今日の天気'
 export const today_sun = '日の出と日の入り'
 export const today_moon = '月の出'

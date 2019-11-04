@@ -22,6 +22,7 @@ export const updateTime = 'update at {time}'
 
 export const today_temperature = 'Low/High'
 export const yesterday_temperature = 'Yesterday'
+export const tomorrow_temperature = 'Tomorrow'
 export const today_code = 'Weather today'
 export const today_sun = 'Sun rise/set'
 export const today_moon = 'Moon rise/set'

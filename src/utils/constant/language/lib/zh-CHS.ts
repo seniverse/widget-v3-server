@@ -22,6 +22,7 @@ export const updateTime = '{time}发布'
 
 export const today_temperature = '最低温/最高温'
 export const yesterday_temperature = '昨日气温'
+export const tomorrow_temperature = '明日气温'
 export const today_code = '今日天气'
 export const today_sun = '日出日落'
 export const today_moon = '月出月落'

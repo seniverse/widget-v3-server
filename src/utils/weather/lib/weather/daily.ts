@@ -106,6 +106,34 @@ export const API_CONFIGS = [
             }
           ]
         })
+      },
+      tomorrow_temperature: {
+        name: '明日温度',
+        rightKeys: ['tomorrow'],
+        availableSizes: ['1,1'],
+        getConfig: (language: string, unit: string) => ({
+          '1,1': [
+            {
+              dataSource: `(${DATA_SOURCE}).results[0].daily[0]`,
+              params: {
+                start: 1,
+                days: 1
+              },
+              template: {
+                type: TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE,
+                [TEMPLATE_DATA.TEMPLATE.UI_TEMPLATE]: {
+                  header: formatLocal(language, 'tomorrow_temperature'),
+                  content: [
+                    {
+                      text: `#:low#/#:high#`,
+                      suffix: unitFormatter(unit)
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        })
       }
     }
   },
