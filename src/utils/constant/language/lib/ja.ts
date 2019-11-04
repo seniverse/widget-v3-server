@@ -20,7 +20,7 @@ export const wind_direction = '#:wind_direction#風'
 
 export const updateTime = '{time}発布'
 
-export const today_temperature = '最低/高気温'
+export const today_temperature = '今日の気温'
 export const yesterday_temperature = '昨日の気温'
 export const tomorrow_temperature = '明日の気温'
 export const today_code = '今日の天気'

@@ -109,7 +109,7 @@ export const API_CONFIGS = [
       },
       tomorrow_temperature: {
         name: '明日温度',
-        rightKeys: ['tomorrow'],
+        rightKeys: ['days_limit'],
         availableSizes: ['1,1'],
         getConfig: (language: string, unit: string) => ({
           '1,1': [

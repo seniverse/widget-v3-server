@@ -20,7 +20,7 @@ export const wind_direction = '#:wind_direction#风'
 
 export const updateTime = '{time}发布'
 
-export const today_temperature = '最低温/最高温'
+export const today_temperature = '今日气温'
 export const yesterday_temperature = '昨日气温'
 export const tomorrow_temperature = '明日气温'
 export const today_code = '今日天气'
